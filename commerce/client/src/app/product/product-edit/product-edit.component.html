@@ -12,7 +12,7 @@
 		[hidden]="price.valid || (price.untouched && !form.submitted)">
 		Betta rise yor price up
 	</small>
-	<form (submit)="editProduct($event)" #form="ngForm">
+	<form #form="ngForm" (submit)="editProduct($event); form.reset(event)" >
 		<label>Name</label>
 		<input class="input" 
 		type="text" 
@@ -40,7 +40,7 @@
 		required 
 		>
 		<div id="buttons">
-			<button [routerLink]="['']">Reset</button>
+			<button (click)="event.reset()">Reset</button>
 			<input type="submit" value="UPDATE">
 		</div>
 	</form>

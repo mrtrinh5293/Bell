@@ -12,7 +12,7 @@
 		[hidden]="price.valid || (price.untouched && !form.submitted)">
 		Betta rise yor price up
 	</small>
-	<form (submit)="addProduct($event)" #form="ngForm">
+	<form #form="ngForm" (submit)="addProduct($event); form.reset(event)">
 		<label>Name</label>
 		<input class="input" 
 		type="text" 
@@ -41,8 +41,8 @@
 		required 
 		>
 		<div id="buttons">
-			<button [routerLink]="['']">Reset</button>
-			<input style="background-color: lightblue" [disabled]="!form.valid" type="submit" value="CREATE">
+      <button (click)="event.reset()">Reset</button>
+			<input  [disabled]="!form.valid" type="submit" value="CREATE">
 		</div>
 	</form>
 	{{error}}

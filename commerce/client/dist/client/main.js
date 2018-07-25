@@ -93,7 +93,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<router-outlet></router-outlet>\n"
+module.exports = "<h1>Commerce Manager</h1>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -221,7 +221,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\t<h1>New Product</h1>\n\t<small\n\t\t[hidden]=\"name.valid || (name.untouched && !form.submitted)\">\n\t\tmore than 3 chac pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"qty.valid || (qty.untouched && !form.submitted)\">\n\t\tbigger than 0 pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"price.valid || (price.untouched && !form.submitted)\">\n\t\tBetta rise yor price up\n\t</small>\n\t<form (submit)=\"editProduct($event)\" #form=\"ngForm\">\n\t\t<label>Name</label>\n\t\t<input class=\"input\" \n\t\ttype=\"text\" \n\t\tname=\"name\" \n\t\t[(ngModel)]=\"product.name\"\n\t\t#name = \"ngModel\"\n\t\tminlength=\"3\"\n\t\trequired \n\t\t>\n\t\t<label>Qty</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"qty\" \n\t\t[(ngModel)]=\"product.qty\"\n\t\t#qty = \"ngModel\"\n\t\trequired \n\t\t>\n\t\t<label>Price</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"price\" \n\t\t[(ngModel)]=\"product.price\"\n\t\t#price = \"ngModel\"\n\t\tmin = \"1\"\n\t\trequired \n\t\t>\n\t\t<div id=\"buttons\">\n\t\t\t<button class=\"buttons\" [routerLink]=\"['']\">Reset</button>\n\t\t\t<input class=\"buttons\" style=\"background-color: lightgreen\" type=\"submit\" value=\"UPDATE\">\n\t\t</div>\n\t</form>\n</div>"
+module.exports = "<div>\n\t<h1>New Product</h1>\n\t<small\n\t\t[hidden]=\"name.valid || (name.untouched && !form.submitted)\">\n\t\tmore than 3 chac pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"qty.valid || (qty.untouched && !form.submitted)\">\n\t\tbigger than 0 pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"price.valid || (price.untouched && !form.submitted)\">\n\t\tBetta rise yor price up\n\t</small>\n\t<form #form=\"ngForm\" (submit)=\"editProduct($event); form.reset(event)\" >\n\t\t<label>Name</label>\n\t\t<input class=\"input\" \n\t\ttype=\"text\" \n\t\tname=\"name\" \n\t\t[(ngModel)]=\"product.name\"\n\t\t#name = \"ngModel\"\n\t\tminlength=\"3\"\n\t\trequired \n\t\t>\n\t\t<label>Qty</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"qty\" \n\t\t[(ngModel)]=\"product.qty\"\n\t\t#qty = \"ngModel\"\n\t\trequired \n\t\t>\n\t\t<label>Price</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"price\" \n\t\t[(ngModel)]=\"product.price\"\n\t\t#price = \"ngModel\"\n\t\tmin = \"1\"\n\t\trequired \n\t\t>\n\t\t<div id=\"buttons\">\n\t\t\t<button (click)=\"event.reset()\">Reset</button>\n\t\t\t<input type=\"submit\" value=\"UPDATE\">\n\t\t</div>\n\t</form>\n</div>"
 
 /***/ }),
 
@@ -280,6 +280,7 @@ var ProductEditComponent = /** @class */ (function () {
         observable.subscribe(function (res) {
             _this.product = {};
             _this._router.navigate(['']);
+            // event.resetForm();
         }, function (err) {
             _this.error = err.json().err;
         });
@@ -396,7 +397,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\t<h1>New Product</h1>\n\t<small\n\t\t[hidden]=\"name.valid || (name.untouched && !form.submitted)\">\n\t\tmore than 3 chac pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"qty.valid || (qty.untouched && !form.submitted)\">\n\t\tbigger than 0 pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"price.valid || (price.untouched && !form.submitted)\">\n\t\tBetta rise yor price up\n\t</small>\n\t<form (submit)=\"addProduct($event)\" #form=\"ngForm\">\n\t\t<label>Name</label>\n\t\t<input class=\"input\" \n\t\ttype=\"text\" \n\t\tname=\"name\" \n\t\t[(ngModel)]=\"new_product.name\"\n\t\t#name = \"ngModel\"\n\t\tminlength=\"3\"\n\t\trequired \n\t\t>\n\t\t<label>Qty</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"qty\" \n\t\t[(ngModel)]=\"new_product.qty\"\n\t\t#qty = \"ngModel\"\n\t\tmin=\"1\" \n\t\trequired \n\t\t>\n\t\t<label>Price</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"price\" \n\t\t[(ngModel)]=\"new_product.price\"\n\t\t#price = \"ngModel\"\n\t\tmin = \"1\"\n\t\trequired \n\t\t>\n\t\t<div id=\"buttons\">\n\t\t\t<button [routerLink]=\"['']\">Reset</button>\n\t\t\t<input style=\"background-color: lightblue\" [disabled]=\"!form.valid\" type=\"submit\" value=\"CREATE\">\n\t\t</div>\n\t</form>\n\t{{error}}\n</div>"
+module.exports = "<div>\n\t<h1>New Product</h1>\n\t<small\n\t\t[hidden]=\"name.valid || (name.untouched && !form.submitted)\">\n\t\tmore than 3 chac pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"qty.valid || (qty.untouched && !form.submitted)\">\n\t\tbigger than 0 pls! |\n\t</small>\n\t<small\n\t\t[hidden]=\"price.valid || (price.untouched && !form.submitted)\">\n\t\tBetta rise yor price up\n\t</small>\n\t<form #form=\"ngForm\" (submit)=\"addProduct($event); form.reset(event)\">\n\t\t<label>Name</label>\n\t\t<input class=\"input\" \n\t\ttype=\"text\" \n\t\tname=\"name\" \n\t\t[(ngModel)]=\"new_product.name\"\n\t\t#name = \"ngModel\"\n\t\tminlength=\"3\"\n\t\trequired \n\t\t>\n\t\t<label>Qty</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"qty\" \n\t\t[(ngModel)]=\"new_product.qty\"\n\t\t#qty = \"ngModel\"\n\t\tmin=\"1\" \n\t\trequired \n\t\t>\n\t\t<label>Price</label>\n\t\t<input class=\"input\"\n\t\ttype=\"number\" \n\t\tname=\"price\" \n\t\t[(ngModel)]=\"new_product.price\"\n\t\t#price = \"ngModel\"\n\t\tmin = \"1\"\n\t\trequired \n\t\t>\n\t\t<div id=\"buttons\">\n      <button (click)=\"event.reset()\">Reset</button>\n\t\t\t<input  [disabled]=\"!form.valid\" type=\"submit\" value=\"CREATE\">\n\t\t</div>\n\t</form>\n\t{{error}}\n</div>"
 
 /***/ }),
 

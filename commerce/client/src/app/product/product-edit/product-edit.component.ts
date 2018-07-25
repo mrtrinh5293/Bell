@@ -43,9 +43,11 @@ export class ProductEditComponent implements OnInit {
       (res)=>{
         this.product = {};
         this._router.navigate(['']);
+        // event.resetForm();
       },
       (err)=>{
         this.error = err.json().err;
       })
   }
+
 }
